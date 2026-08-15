@@ -1,8 +1,8 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
-import { userRouter } from "./modules/users/user.route";
 import config from "./config";
+import { authRouter } from "./modules/auth/auth.route";
 const app: Application = express();
 
 // middleware
@@ -18,6 +18,7 @@ app.get('/', async (req: Request, res: Response) => {
     res.send('Hello! form Rent-nest')
 })
 // routers
-app.use('/api/auth', userRouter)
+// auth router
+app.use('/api/auth', authRouter)
 
 export default app;

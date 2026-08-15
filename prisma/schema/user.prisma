@@ -3,7 +3,7 @@ model User {
     name      String
     email     String     @unique
     password  String
-    phone     String?
+    phone     String
     role      UserRole
     status    UserStatus @default(UNBANNED)
     address   String?
