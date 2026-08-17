@@ -3,6 +3,8 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import config from "./config";
 import { authRouter } from "./modules/auth/auth.route";
+import { landLordRouter } from "./modules/landlord/landlord.route";
+// import { landLordRouter } from "./modules/landlord/landlord.route";
 const app: Application = express();
 
 // middleware
@@ -20,5 +22,8 @@ app.get('/', async (req: Request, res: Response) => {
 // routers
 // auth router
 app.use('/api/auth', authRouter)
+
+// Landlord API's
+app.use('/api/landlord', landLordRouter)
 
 export default app;
