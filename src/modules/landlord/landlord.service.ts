@@ -8,6 +8,8 @@ const createPropertyIntoDB = async (payload: ICreateProperty, id: string) => {
     return result;
 }
 
+
+
 export const landlordService = {
-    createPropertyIntoDB
+    createPropertyIntoDB,
 }

@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from "express";
 import config from "./config";
 import { authRouter } from "./modules/auth/auth.route";
 import { landLordRouter } from "./modules/landlord/landlord.route";
+import { propertiesRouter } from "./modules/properties/properties.route";
 // import { landLordRouter } from "./modules/landlord/landlord.route";
 const app: Application = express();
 
@@ -25,5 +26,6 @@ app.use('/api/auth', authRouter)
 
 // Landlord API's
 app.use('/api/landlord', landLordRouter)
+app.use('/api', propertiesRouter)
 
 export default app;
