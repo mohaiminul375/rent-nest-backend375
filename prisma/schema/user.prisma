@@ -10,7 +10,13 @@ model User {
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
 
-    properties Property[]
+    properties     Property[]
+    rentalRequests RentalRequest[]
+    // @relation("TenantRentalRequests")
 
+    @@index([role])
+    @@index([status])
+    @@index([email])
+    
     @@map("users")
 }

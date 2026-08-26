@@ -1,7 +1,18 @@
 import { prisma } from "../../lib/prisma";
 
 const getAllPropertyFromDB = async () => {
-    const result = await prisma.property.findMany();
+    const result = await prisma.property.findMany({
+        include: {
+            landlord: {
+                omit: {
+                    id: true,
+                    password: true,
+                    role: true,
+                    status: true
+                },
+            },
+        },
+    });;
     return result
 }
 const getSinglePropertyFromDB = async (id: string) => {

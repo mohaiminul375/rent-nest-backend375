@@ -5,6 +5,7 @@ import config from "./config";
 import { authRouter } from "./modules/auth/auth.route";
 import { landLordRouter } from "./modules/landlord/landlord.route";
 import { propertiesRouter } from "./modules/properties/properties.route";
+import { rentalRequest } from "./modules/RentalRequest/rentalReq.route";
 const app: Application = express();
 
 // middleware
@@ -27,5 +28,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/landlord', landLordRouter)
 // Public api's Properties
 app.use('/api', propertiesRouter)
-
+// Rental Requests
+app.use('/api/rentals',rentalRequest)
+// 
 export default app;
