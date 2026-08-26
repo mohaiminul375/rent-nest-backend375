@@ -29,6 +29,7 @@ const getAllRentalReqFromDB = async () => {
             property: {
                 omit: {
                     id: true,
+                    landlordId: true
                 },
             }
         }
@@ -37,8 +38,27 @@ const getAllRentalReqFromDB = async () => {
     return property
 }
 
-const getRentalReqDetailsFromDB = async () => {
-
+const getRentalReqDetailsFromDB = async (id: string) => {
+    const property = await prisma.rentalRequest.findUniqueOrThrow({
+        where: { id },
+        include: {
+            tenant: {
+                omit: {
+                    id: true,
+                    password: true,
+                    role: true,
+                    status: true
+                },
+            },
+            property: {
+                omit: {
+                    id: true,
+                    landlordId: true
+                },
+            }
+        }
+    })
+    return property;
 }
 
 

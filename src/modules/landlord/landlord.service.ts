@@ -29,18 +29,60 @@ const deletePropertyIntoDB = async (propertyId: string, landlordId: string, isLa
     }
 
     const result = await prisma.property.delete({ where: { id: propertyId } })
-    
+
     return result;
 }
-const getAllRentalReqFromDB = async () => {
-
+const getLandLordRentalReqFromDB = async (landlordId: string) => {
+    const properties = await prisma.rentalRequest.findMany({
+        where: {
+            property: {
+                landlordId
+            },
+        },
+        include: {
+            property: true,
+            tenant: {
+                omit: {
+                    password: true
+                }
+            }
+        }
+    })
+    return properties
 }
-const updateRentalReqIntoDB = async () => {
+const updateRentalReqIntoDB = async (id: string, landlordId: string, payload: { status: "APPROVED" | "REJECTED" }) => {
+    const request = await prisma.rentalRequest.findUnique({
+        where: {
+            id
+        },
+        include: {
+            property: true
+        },
+    })
+
+
+    if (!request || request.property.landlordId !== landlordId) {
+        throw new Error("Rental request not found or unauthorized");
+    }
+
+    if (request.status !== "PENDING") {
+        throw new Error(`Cannot update request because it is already ${request.status}`);
+    }
+
+    const updatedRequest = await prisma.rentalRequest.update({
+        where: { id },
+        data: { status: payload.status }
+    });
+
+    return updatedRequest;
+
 
 }
 
 export const landlordService = {
     createPropertyIntoDB,
     updatePropertyIntoDB,
-    deletePropertyIntoDB
+    deletePropertyIntoDB,
+    getLandLordRentalReqFromDB,
+    updateRentalReqIntoDB
 }
