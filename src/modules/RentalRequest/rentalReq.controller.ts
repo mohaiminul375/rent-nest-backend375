@@ -15,6 +15,7 @@ const createRentalReq = catchAsync(async (req: Request, res: Response, next: Nex
     });
 
 })
+
 const getAllRentalReq = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const result = await rentalRequestService.getAllRentalReqFromDB();
 
@@ -25,6 +26,7 @@ const getAllRentalReq = catchAsync(async (req: Request, res: Response, next: Nex
         data: result,
     });
 })
+
 const getRentalReqDetails = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const result = await rentalRequestService.getRentalReqDetailsFromDB(req.params.id as string);
 

@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-
+// Todo: filter search
 const getAllPropertyFromDB = async () => {
     const result = await prisma.property.findMany({
         include: {
@@ -15,6 +15,7 @@ const getAllPropertyFromDB = async () => {
     });;
     return result
 }
+
 const getSinglePropertyFromDB = async (id: string) => {
     const result = await prisma.property.findUniqueOrThrow({
         where: {

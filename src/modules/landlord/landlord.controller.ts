@@ -29,6 +29,7 @@ const updateProperty = catchAsync(async (req: Request, res: Response, next: Next
         data: updatedProperty
     })
 })
+
 const deleteProperty = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const propertyId = req.params?.id
     const landlordId = req.user?.id;
@@ -45,8 +46,8 @@ const deleteProperty = catchAsync(async (req: Request, res: Response, next: Next
 
 
 })
+
 const getLandlordRentalRequest = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    // do letter
     const result = await landlordService.getLandLordRentalReqFromDB(req.user?.id as string)
 
     sendResponse(res, {
@@ -56,6 +57,7 @@ const getLandlordRentalRequest = catchAsync(async (req: Request, res: Response, 
         data: result
     })
 })
+
 const updateRentalRequest = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // do letter
     const id = req.params.id;
@@ -69,7 +71,6 @@ const updateRentalRequest = catchAsync(async (req: Request, res: Response, next:
     });
 
 })
-
 
 export const landlordController = {
     createProperty,

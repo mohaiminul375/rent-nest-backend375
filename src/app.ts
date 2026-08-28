@@ -24,11 +24,12 @@ app.get('/', async (req: Request, res: Response) => {
 // auth router
 app.use('/api/auth', authRouter)
 
-// Landlord API's
+// Landlord Management API's
 app.use('/api/landlord', landLordRouter)
 // Public api's Properties
 app.use('/api', propertiesRouter)
 // Rental Requests
 app.use('/api/rentals',rentalRequest)
-// 
+// todo: ADmin 
+// app.use('/api/admin')
 export default app;
