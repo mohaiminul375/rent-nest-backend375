@@ -13,10 +13,10 @@ model User {
     properties     Property[]
     rentalRequests RentalRequest[]
     // @relation("TenantRentalRequests")
+    payment        Payment?
 
     @@index([role])
     @@index([status])
     @@index([email])
-    
     @@map("users")
 }
