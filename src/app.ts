@@ -6,6 +6,8 @@ import { authRouter } from "./modules/auth/auth.route";
 import { landLordRouter } from "./modules/landlord/landlord.route";
 import { propertiesRouter } from "./modules/properties/properties.route";
 import { rentalRequest } from "./modules/RentalRequest/rentalReq.route";
+import { paymentRoute } from "./modules/payment/payment.route";
+import { globalErrorHandler } from "./middleware/globalErrorHandler";
 const app: Application = express();
 
 // middleware
@@ -29,7 +31,14 @@ app.use('/api/landlord', landLordRouter)
 // Public api's Properties
 app.use('/api', propertiesRouter)
 // Rental Requests
-app.use('/api/rentals',rentalRequest)
+app.use('/api/rentals', rentalRequest)
 // todo: ADmin 
 // app.use('/api/admin')
+
+// Payment Stripe
+app.use('/api/payments/', paymentRoute)
+
+
+// global error handle
+app.use(globalErrorHandler)
 export default app;

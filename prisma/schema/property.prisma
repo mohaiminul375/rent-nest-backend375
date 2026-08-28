@@ -11,7 +11,7 @@ model Property {
 
     address String
     city    String
-    price   Int
+    price   Decimal @db.Decimal(10, 2)
     status  PropertyStatus @default(AVAILABLE)
 
     landlordId String
