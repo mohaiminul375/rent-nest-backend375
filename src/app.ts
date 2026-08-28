@@ -11,6 +11,7 @@ import { globalErrorHandler } from "./middleware/globalErrorHandler";
 import { stripe } from "./lib/stripe";
 import Stripe from "stripe";
 import { paymentController } from "./modules/payment/payment.controller";
+import { adminRouter } from "./modules/admin/admin.route";
 const app: Application = express();
 
 // middleware
@@ -21,9 +22,9 @@ app.use(cors({
 
 
 app.post(
-  "/api/payments/webhook",
-  express.raw({ type: "application/json" }),
-  paymentController.handleWebhook
+    "/api/payments/webhook",
+    express.raw({ type: "application/json" }),
+    paymentController.handleWebhook
 );
 
 app.use(express.json());
@@ -44,7 +45,7 @@ app.use('/api', propertiesRouter)
 // Rental Requests
 app.use('/api/rentals', rentalRequest)
 // todo: ADmin 
-// app.use('/api/admin')
+app.use('/api/admin', adminRouter)
 
 // Payment Stripe
 app.use('/api/payments', paymentRoute)
