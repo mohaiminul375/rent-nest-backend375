@@ -1,3 +1,4 @@
+import { UserStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma"
 
 const getAllUsersFromDB = async () => {
@@ -8,6 +9,22 @@ const getAllUsersFromDB = async () => {
     })
     return result
 }
+
+const updateUserStatus = async (id: string, payload: { status: "UNBANNED" | "BANNED" }) => {
+    const user = await prisma.user.update({
+        where: { id },
+        data: { status: payload.status },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            status: true,
+        }
+    });
+    return user;
+};
+
+
 const getAllPropertiesFromDB = async () => {
     const result = await prisma.property.findMany({
         include: {
@@ -39,6 +56,7 @@ const getAllRentalReqFromDB = async () => {
 
 export const adminService = {
     getAllUsersFromDB,
+    updateUserStatus,
     getAllPropertiesFromDB,
     getAllRentalReqFromDB
 }

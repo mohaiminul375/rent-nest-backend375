@@ -13,6 +13,20 @@ const getAllUsers = catchAsync(async (req: Request, res: Response, next: NextFun
         data: result
     })
 })
+
+const updateUserStatus = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const result = await adminService.updateUserStatus(id as string, req.body);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "User status updated successfully",
+        data: result,
+    });
+});
+
+
 const getAllProperty = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const result = await adminService.getAllPropertiesFromDB();
     sendResponse(res, {
