@@ -10,7 +10,7 @@ const getAllUsersFromDB = async () => {
     return result
 }
 
-const updateUserStatus = async (id: string, payload: { status: "UNBANNED" | "BANNED" }) => {
+const updateUserStatus = async (id: string, payload: { status: UserStatus }) => {
     const user = await prisma.user.update({
         where: { id },
         data: { status: payload.status },
@@ -39,6 +39,7 @@ const getAllPropertiesFromDB = async () => {
     })
     return result
 }
+
 const getAllRentalReqFromDB = async () => {
     const result = await prisma.rentalRequest.findMany({
         include: {

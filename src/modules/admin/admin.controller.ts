@@ -26,7 +26,6 @@ const updateUserStatus = catchAsync(async (req: Request, res: Response, next: Ne
     });
 });
 
-
 const getAllProperty = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const result = await adminService.getAllPropertiesFromDB();
     sendResponse(res, {
@@ -36,6 +35,7 @@ const getAllProperty = catchAsync(async (req: Request, res: Response, next: Next
         data: result
     })
 })
+
 const getAllRentalReq = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const result = await adminService.getAllRentalReqFromDB();
     sendResponse(res, {
@@ -48,6 +48,7 @@ const getAllRentalReq = catchAsync(async (req: Request, res: Response, next: Nex
 
 export const adminController = {
     getAllUsers,
+    updateUserStatus,
     getAllProperty,
     getAllRentalReq
 }

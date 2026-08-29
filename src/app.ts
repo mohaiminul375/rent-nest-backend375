@@ -20,9 +20,8 @@ app.use(cors({
     credentials: true,
 }))
 
-
-app.post(
-    "/api/payments/webhook",
+// webhook Stripe
+app.post("/api/payments/webhook",
     express.raw({ type: "application/json" }),
     paymentController.handleWebhook
 );
@@ -34,18 +33,24 @@ app.use(cookieParser());
 app.get('/', async (req: Request, res: Response) => {
     res.send('Hello! form Rent-nest')
 })
+
 // routers
 // auth router
 app.use('/api/auth', authRouter)
 
 // Landlord Management API's
 app.use('/api/landlord', landLordRouter)
+
 // Public api's Properties
 app.use('/api', propertiesRouter)
+
 // Rental Requests
 app.use('/api/rentals', rentalRequest)
+
 // todo: ADmin 
 app.use('/api/admin', adminRouter)
+
+//todo:Review 
 
 // Payment Stripe
 app.use('/api/payments', paymentRoute)
