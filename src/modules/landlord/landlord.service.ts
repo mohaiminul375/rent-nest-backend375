@@ -15,15 +15,21 @@ const updatePropertyIntoDB = async (propertyId: string, payload: any, landlordId
     }
     // Todo: may use include
     const result = await prisma.property.update({
-        where: { id: propertyId }, data: { payload }
+        where: { id: propertyId }, data: payload
     })
     return result
 
 }
 const deletePropertyIntoDB = async (propertyId: string, landlordId: string, isLandlord: boolean) => {
+
     const property = await prisma.property.findUniqueOrThrow({ where: { id: propertyId } })
+    // console.log(landlordId, 'landlord-id')
+    // console.log('role', isLandlord)
+    // console.log(property)
+
 
     if (!isLandlord && property.landlordId !== landlordId) {
+        console.log('error hitted',isLandlord)
         throw new Error("You are not the owner of this post");
     }
 
@@ -31,6 +37,7 @@ const deletePropertyIntoDB = async (propertyId: string, landlordId: string, isLa
 
     return result;
 }
+
 const getLandLordRentalReqFromDB = async (landlordId: string) => {
     const properties = await prisma.rentalRequest.findMany({
         where: {

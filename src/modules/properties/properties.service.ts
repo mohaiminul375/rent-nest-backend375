@@ -5,10 +5,7 @@ const getAllPropertyFromDB = async () => {
         include: {
             landlord: {
                 omit: {
-                    id: true,
                     password: true,
-                    role: true,
-                    status: true
                 },
             },
         },

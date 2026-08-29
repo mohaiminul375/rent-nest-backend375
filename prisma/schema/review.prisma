@@ -1,17 +1,17 @@
-model Review{
- id String @id @default(uuid())
+model Review {
+    id String @id @default(uuid())
 
- rating Int
- comment String?
+    rating  Int
+    comment String?
 
- propertyId String
- tenantId String
+    propertyId String
+    tenantId   String
 
- property Property @relation(fields:[propertyId],references:[id])
- tenant User @relation(fields:[tenantId],references:[id])
+    property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+    tenant   User     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
- createdAt DateTime @default(now())
- updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-@@map("Reviews")
+    @@map("Reviews")
 }

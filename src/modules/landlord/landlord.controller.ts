@@ -19,7 +19,7 @@ const updateProperty = catchAsync(async (req: Request, res: Response, next: Next
     const propertyId = req.params?.id
     const landlordId = req.user?.id;
     const isLandlord = req.user?.role === "LANDLORD";
-    const payload = req.params.id;
+    const payload = req.body;
 
     const updatedProperty = await landlordService.updatePropertyIntoDB(propertyId as string, payload, landlordId as string, isLandlord)
     sendResponse(res, {
@@ -39,7 +39,7 @@ const deleteProperty = catchAsync(async (req: Request, res: Response, next: Next
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: 'property updated successfully',
+        message: 'property delete successfully',
         data: null
     })
 
