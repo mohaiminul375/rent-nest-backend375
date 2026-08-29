@@ -12,6 +12,7 @@ import { stripe } from "./lib/stripe";
 import Stripe from "stripe";
 import { paymentController } from "./modules/payment/payment.controller";
 import { adminRouter } from "./modules/admin/admin.route";
+import { reviewRouter } from "./modules/review/review.route";
 const app: Application = express();
 
 // middleware
@@ -47,10 +48,9 @@ app.use('/api', propertiesRouter)
 // Rental Requests
 app.use('/api/rentals', rentalRequest)
 
-// todo: ADmin 
 app.use('/api/admin', adminRouter)
 
-//todo:Review 
+app.use('/api/reviews', reviewRouter)
 
 // Payment Stripe
 app.use('/api/payments', paymentRoute)
