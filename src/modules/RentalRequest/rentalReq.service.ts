@@ -20,16 +20,9 @@ const getAllRentalReqFromDB = async () => {
         include: {
             tenant: {
                 omit: {
-                    id: true,
                     password: true,
                     role: true,
                     status: true
-                },
-            },
-            property: {
-                omit: {
-                    id: true,
-                    landlordId: true
                 },
             }
         }
