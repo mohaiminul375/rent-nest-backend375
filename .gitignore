@@ -6,3 +6,4 @@ dist
 .claude
 .windsurf
 /generated/prisma
+.vercel
