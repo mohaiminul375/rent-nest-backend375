@@ -1,6 +1,7 @@
 import { prisma } from "../../lib/prisma";
+import { ICreateRentalReq } from "./rentalReq.interface";
 
-const createRentalReqIntoDB = async (tenantId: string, payload: any) => {
+const createRentalReqIntoDB = async (tenantId: string, payload:ICreateRentalReq) => {
     const property = await prisma.property.findUnique({ where: { id: payload.propertyId } });
     if (!property || property.status !== "AVAILABLE") {
         throw new Error("Property is not available for rent");

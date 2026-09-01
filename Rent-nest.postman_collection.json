@@ -1,0 +1,515 @@
+{
+  "info": {
+    "_postman_id": "8e05fed3-276a-48e1-acc8-89ac6df65aa3",
+    "name": "Rent-nest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57191183",
+    "_collection_link": "https://go.postman.co/collection/57191183-8e05fed3-276a-48e1-acc8-89ac6df65aa3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Users API",
+      "item": [
+        {
+          "name": "create user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Jhon Don\",\r\n    \"email\": \"jhon420@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"01234567890\",\r\n    \"role\": \"TENANT\",\r\n    \"address\":\"ChorBazar BD\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"mohaiminul375@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "landlord API",
+      "item": [
+        {
+          "name": "create req",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Cozy Studio Apartment\",\r\n  \"description\": \"A compact and comfortable studio apartment for a single person or couple.\",\r\n  \"bedrooms\": 1,\r\n  \"bathrooms\": 1,\r\n  \"address\": \"Degree Bottola\",\r\n  \"city\": \"Pabna\",\r\n  \"price\": 12000,\r\n  \"category\": \"STUDIO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/landlord/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "landlord",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "landlord property request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/landlord/requests",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "landlord",
+                "requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "status property update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\":\"APPROVED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/landlord/requests/92ae7979-c346-4bbc-87d1-57374117e5f0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "landlord",
+                "requests",
+                "92ae7979-c346-4bbc-87d1-57374117e5f0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update property listing",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Luxury Garden Villa\",\r\n  \"description\": \"A luxurious villa with a large garden and modern facilities.\",\r\n  \"bedrooms\": 4,\r\n  \"bathrooms\":5,\r\n  \"address\": \"46 Garden Avenue\",\r\n  \"city\": \"Chattogram\",\r\n  \"price\": 50,\r\n  \"category\": \"VILLA\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/landlord/properties/398a5a5c-6566-462a-89b5-e40a7017dd44",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "landlord",
+                "properties",
+                "398a5a5c-6566-462a-89b5-e40a7017dd44"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "rental Req",
+      "item": [
+        {
+          "name": "create Rental Req",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"propertyId\": \"654a2d93-8780-4f9c-ad2a-05b32d577ea5\",\r\n  \"startDate\": \"2026-09-01T00:00:00.000Z\",\r\n  \"endDate\": \"2027-09-01T00:00:00.000Z\",\r\n  \"message\": \"I am interested in renting this property.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/rentals/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rentals",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get rental req",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"propertyId\": \"654a2d93-8780-4f9c-ad2a-05b32d577ea5\",\r\n  \"startDate\": \"2026-09-01T00:00:00.000Z\",\r\n  \"endDate\": \"2027-09-01T00:00:00.000Z\",\r\n  \"message\": \"I am interested in renting this property.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/rentals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rentals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get rental req Single",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"propertyId\": \"654a2d93-8780-4f9c-ad2a-05b32d577ea5\",\r\n  \"startDate\": \"2026-09-01T00:00:00.000Z\",\r\n  \"endDate\": \"2027-09-01T00:00:00.000Z\",\r\n  \"message\": \"I am interested in renting this property.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/rentals/43fde28e-157c-4a4d-b209-10468b6b194c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "rentals",
+                "43fde28e-157c-4a4d-b209-10468b6b194c"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "create payment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rentalRequestId\": \"92ae7979-c346-4bbc-87d1-57374117e5f0\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/payments/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "payments",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "get users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/admin/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get rentals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/admin/rentals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "rentals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ban user admin",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\":\"BANNED\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Admin}}/api/admin/users/1c3247d0-da9f-429c-bbb8-249d70ea043b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "admin",
+                "users",
+                "1c3247d0-da9f-429c-bbb8-249d70ea043b"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Properties (Public)",
+      "item": [
+        {
+          "name": "all property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/properties",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "property Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/properties/49bf4741-94ad-4289-a9c2-bd33abfc598a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "properties",
+                "49bf4741-94ad-4289-a9c2-bd33abfc598a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "property Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Admin}}/api/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

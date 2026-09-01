@@ -1,7 +1,29 @@
 import { prisma } from "../../lib/prisma";
+import { IPostQuery } from "./properties.interface";
+
+
 // Todo: filter search
-const getAllPropertyFromDB = async () => {
+const getAllPropertyFromDB = async (query: IPostQuery) => {
+    const { searchTerm, city, minPrice, maxPrice, category } = query
+
+    const whereConditions: IPostQuery = {};
+    if (searchTerm) {
+        whereConditions.OR = [
+            { title: { contains: searchTerm, mode: 'insensitive' }, },
+            { description: { contains: searchTerm, mode: 'insensitive' } },
+            { address: { contains: searchTerm, mode: 'insensitive' } },
+        ];
+    }
+    if (city) whereConditions.city = city;
+    if (category) whereConditions.category = category;
+    // price sorting
+    if (minPrice || maxPrice) {
+        whereConditions.price = {};
+        if (minPrice) whereConditions.price.gte = parseFloat(minPrice);
+        if (maxPrice) whereConditions.price.lte = parseFloat(maxPrice);
+    }
     const result = await prisma.property.findMany({
+        where: whereConditions,
         include: {
             landlord: {
                 omit: {

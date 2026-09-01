@@ -1,6 +1,6 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import express, { Application, Request, Response } from "express";
+import express, { Application, Request, response, Response } from "express";
 import config from "./config";
 import { authRouter } from "./modules/auth/auth.route";
 import { landLordRouter } from "./modules/landlord/landlord.route";
@@ -13,6 +13,7 @@ import Stripe from "stripe";
 import { paymentController } from "./modules/payment/payment.controller";
 import { adminRouter } from "./modules/admin/admin.route";
 import { reviewRouter } from "./modules/review/review.route";
+import { log } from "node:console";
 const app: Application = express();
 
 // middleware
@@ -20,7 +21,7 @@ app.use(cors({
     origin: config.app_url,
     credentials: true,
 }))
-
+const endpointSecret = config.stripe_webhook_secret;
 // webhook Stripe
 app.post("/api/payments/webhook",
     express.raw({ type: "application/json" }),

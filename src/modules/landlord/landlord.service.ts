@@ -8,7 +8,7 @@ const createPropertyIntoDB = async (payload: ICreateProperty, id: string) => {
     return result;
 }
 
-const updatePropertyIntoDB = async (propertyId: string, payload: any, landlordId: string, isLandlord: boolean) => {
+const updatePropertyIntoDB = async (propertyId: string, payload: ICreateProperty, landlordId: string, isLandlord: boolean) => {
     const property = await prisma.property.findUniqueOrThrow({ where: { id: propertyId } })
     if (!isLandlord && property.landlordId !== landlordId) {
         throw new Error("You are not the owner of this post");
