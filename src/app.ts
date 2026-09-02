@@ -8,12 +8,10 @@ import { propertiesRouter } from "./modules/properties/properties.route";
 import { rentalRequest } from "./modules/RentalRequest/rentalReq.route";
 import { paymentRoute } from "./modules/payment/payment.route";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
-import { stripe } from "./lib/stripe";
-import Stripe from "stripe";
 import { paymentController } from "./modules/payment/payment.controller";
 import { adminRouter } from "./modules/admin/admin.route";
 import { reviewRouter } from "./modules/review/review.route";
-import { log } from "node:console";
+
 const app: Application = express();
 
 // middleware

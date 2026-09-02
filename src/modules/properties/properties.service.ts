@@ -1,12 +1,13 @@
+import { PropertyWhereInput } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma";
 import { IPostQuery } from "./properties.interface";
 
 
-// Todo: filter search
+
 const getAllPropertyFromDB = async (query: IPostQuery) => {
     const { searchTerm, city, minPrice, maxPrice, category } = query
 
-    const whereConditions: IPostQuery = {};
+    const whereConditions: PropertyWhereInput = {};
     if (searchTerm) {
         whereConditions.OR = [
             { title: { contains: searchTerm, mode: 'insensitive' }, },
@@ -14,7 +15,10 @@ const getAllPropertyFromDB = async (query: IPostQuery) => {
             { address: { contains: searchTerm, mode: 'insensitive' } },
         ];
     }
-    if (city) whereConditions.city = city;
+    if (city) whereConditions.city = {
+        equals: city as string,
+        mode: "insensitive",
+    };
     if (category) whereConditions.category = category;
     // price sorting
     if (minPrice || maxPrice) {

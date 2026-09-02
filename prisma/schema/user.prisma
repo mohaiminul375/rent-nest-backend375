@@ -14,7 +14,7 @@ model User {
     rentalRequests RentalRequest[]
     // @relation("TenantRentalRequests")
     Reviews        Review[]
-    payment        Payment?
+    payment        Payment[]
 
     @@index([role])
     @@index([status])
